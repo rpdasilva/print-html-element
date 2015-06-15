@@ -1,14 +1,14 @@
-#Print HTML Element
+# Print HTML Element
 
 Prints the HTML of a provided element.
 
 Forked from [https://github.com/erikzaadi/jQueryPlugins/tree/master/jQuery.printElement](jQuery.printElement) to remove jQuery dependency.
 
-This fork is currently stripped down in terms of features and full cross-browser testing (and IE8 support removed(. More features will be added as needed or requested.
+This fork is currently stripped down in terms of features and full cross-browser testing (and IE8 support removed). More features will be added as needed or requested.
 PR's welcome.
 
 
-##Usage
+## Usage
 
 In a CommonJS module system via Browserify or Webpack
 ```js
@@ -25,7 +25,7 @@ Good old-fashioned way
     PE.print( document.getElementById('toPrint') );
 ```
 
-###Options supported
+### Options supported
 ```js
     var opts = {
         printMode: '',
