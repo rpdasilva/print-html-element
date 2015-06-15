@@ -1,0 +1,26 @@
+{
+  "name": "print-element",
+  "main": "print-element.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/rpdasilva/print-element",
+  "authors": [
+    "Philip Da Silva <philip@philipdasilva.com>"
+  ],
+  "description": "Prints the HTML of a provided element.",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "html",
+    "print",
+    "element"
+  ],
+  "license": "Dual MIT & GPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

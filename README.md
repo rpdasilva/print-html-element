@@ -4,8 +4,8 @@ Prints the HTML of a provided element.
 
 Forked from [https://github.com/erikzaadi/jQueryPlugins/tree/master/jQuery.printElement](jQuery.printElement) to remove jQuery dependency.
 
-This fork is currently stripped down in terms of features and full cross-browser testing. More features will be added as needed or requested.
-PR's welcome
+This fork is currently stripped down in terms of features and full cross-browser testing (and IE8 support removed(. More features will be added as needed or requested.
+PR's welcome.
 
 
 ##Usage
