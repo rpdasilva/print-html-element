@@ -1,14 +1,14 @@
 {
-  "name": "print-element",
+  "name": "print-html-element",
   "version": "0.1.0",
   "description": "Prints the HTML of a provided element.",
-  "main": "print-element.js",
+  "main": "print-html-element.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rpdasilva/print-element.git"
+    "url": "https://github.com/rpdasilva/print-html-element.git"
   },
   "keywords": [
     "html",
@@ -18,6 +18,6 @@
   "author": "Philip Da Silva <philip@philipdasilva.com>",
   "license": "Dual MIT & GPL",
   "bugs": {
-    "url": "https://github.com/rpdasilva/print-element/issues"
+    "url": "https://github.com/rpdasilva/print-html-element/issues"
   }
 }

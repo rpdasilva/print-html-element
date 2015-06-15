@@ -1,4 +1,4 @@
-#Print Element
+#Print HTML Element
 
 Prints the HTML of a provided element.
 
@@ -12,13 +12,13 @@ PR's welcome.
 
 In a CommonJS module system via Browserify or Webpack
 ```js
-    var PE = require("print-element");
+    var PE = require("print-html-element");
     PE.print( document.getElementById('toPrint') );
 ```
 
 Good old-fashioned way
 ```html
-    <script type="text/javascript" src="js/print-element.js"></script>
+    <script type="text/javascript" src="js/print-html-element.js"></script>
 ```
 ```js
     var PE = PrintElement();
