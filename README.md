@@ -7,6 +7,12 @@ Forked from [jQuery.printElement](https://github.com/erikzaadi/jQueryPlugins/tre
 This fork is currently stripped down in terms of features and full cross-browser testing (IE8 support removed). More features will be added as needed or requested.
 PR's welcome.
 
+## Installation
+Print HTML Element is available on both NPM and Bower.
+
+`npm install print-html-element`
+
+`bower install print-html-element`
 
 ## Usage
 
