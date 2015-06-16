@@ -16,7 +16,7 @@
     "element"
   ],
   "author": "Philip Da Silva <philip@philipdasilva.com>",
-  "license": "Dual MIT & GPL",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/rpdasilva/print-html-element/issues"
   }

@@ -48,3 +48,7 @@ Good old-fashioned way
 
 - printMode determines which method is used to print. As a hidden iframe (default), or popup window
 - pageTitle sets the printed page title (defaults to blank)
+
+## License
+
+`print-html-element` is [MIT licensed](LICENSE.txt)

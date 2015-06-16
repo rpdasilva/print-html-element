@@ -15,7 +15,7 @@
     "print",
     "element"
   ],
-  "license": "Dual MIT & GPL",
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
