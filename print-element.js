@@ -115,7 +115,7 @@ var PrintElement = function() {
 
         // Ensure that relative links work
         html.push('<base href="' + _getBaseHref() + '" />');
-        html.push('</head><body class="print-elementbody">');
+        html.push('</head><body class="pe-body">');
         html.push('<div class="' + element.className + '">' + elementHtml + '</div>');
         html.push('<script type="text/javascript">function printPage(){focus();print();' + ((opts.printMode.toLowerCase() == 'popup') ? 'close();' : '') + '}</script>');
         html.push('</body></html>');

@@ -35,6 +35,8 @@ Good old-fashioned way
     PE.printHtml("<h1>Let's print this h1</h1>");
 ```
 
+An HTML class `pe-body` is also added to the body of the print area which can be used as an additional style hook (on top of the regular print media query/stylesheet)
+
 ### Options and methods supported
 ```js
     var opts = {
