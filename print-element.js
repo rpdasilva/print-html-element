@@ -1,5 +1,5 @@
 /*
-* Print Element Vanilla 0.1
+* Print HTML Element 0.2.0
 *
 * Copyright (c) 2015 Philip Da Silva
 *
@@ -11,8 +11,15 @@
 */
 
 var PrintElement = function() {
-
     function printElement(element, opts) {
+        _print(element, opts, 'elem');
+    }
+
+    function printHtml(str, opts) {
+        _print(str, opts, 'html');
+    }
+
+    function _print(element, opts, type) {
         opts = opts || {};
         opts = {
             printMode: opts.printMode || '',
@@ -20,7 +27,7 @@ var PrintElement = function() {
         };
 
         // Get markup to be printed
-        var html = _getMarkup(element, opts),
+        var html = _getMarkup(element, opts, type),
             printWindow,
             printIframe,
             printDocument,
@@ -81,10 +88,24 @@ var PrintElement = function() {
         return window.location.protocol + '//' + window.location.hostname + port + window.location.pathname;
     }
 
-    function _getMarkup(element, opts) {
+    function _getMarkup(element, opts, type) {
         var elementHtml = element.innerHTML, // Does not support form input elements
             stylesheets,
             html = [];
+
+        switch(type)
+        {
+            case 'elem':
+                elementHtml = element.innerHTML;
+                break;
+
+            case 'html':
+                elementHtml = element;
+                break;
+
+            default:
+                elementHtml = element.innerHTML;
+        }
 
         html.push('<html><head><title>' + (opts.pageTitle || '') + '</title>');
 
@@ -104,7 +125,8 @@ var PrintElement = function() {
     }
 
     return {
-        print: printElement
+        printElement: printElement,
+        printHtml: printHtml
     };
 };
 

@@ -1,14 +1,15 @@
 <html>
 <head>
-    <title>Print Element Sample</title>
+    <title>Print Element Sample v0.2.0</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
     <div class="jumbotron">
-        <h1>Print Element Sample</h1>
+        <h1>Print Element Sample v0.2.0</h1>
         <p>This is sample HTML taken from the <a href="http://getbootstrap.com/examples/theme/">Theme Template for Bootstrap</a> page.</p>
-        <button id="printButton" class="btn btn-lg btn-primary">Print section below</button>
+        <button id="printElButton" class="btn btn-lg btn-primary">Print section below</button>
+        <button id="printStrButton" class="btn btn-lg btn-primary">Print HTML string</button>
     </div>
     <div id="printElement" class="test print class">
         <div class="page-header">
@@ -145,12 +146,19 @@
     <script type="text/javascript">
         var PE = PrintElement();
 
-        document.getElementById('printButton').addEventListener('click', function(e){
+        document.getElementById('printElButton').addEventListener('click', function(e){
             var element = document.getElementById('printElement');
 
             e.preventDefault();
 
-            PE.print(element);
+            PE.printElement(element, {pageTitle: 'From HTML Element'});
+        });
+
+
+        document.getElementById('printStrButton').addEventListener('click', function(e){
+            e.preventDefault();
+
+            PE.printHtml("<h1>Let's print this h1</h1><p>...and while we're at it, this p as well will do nicely.</p>", {pageTitle: 'From HTML String'});
         });
     </script>
 </body>
