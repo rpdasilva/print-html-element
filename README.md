@@ -1,4 +1,4 @@
-# Print HTML Element v0.2.0
+# Print HTML Element v0.2.1
 
 Prints the HTML of a provided element.
 

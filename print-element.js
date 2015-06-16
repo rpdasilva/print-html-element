@@ -1,5 +1,5 @@
 /*
-* Print HTML Element 0.2.0
+* Print HTML Element 0.2.1
 *
 * Copyright (c) 2015 Philip Da Silva
 *

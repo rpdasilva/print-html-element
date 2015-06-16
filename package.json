@@ -1,6 +1,6 @@
 {
   "name": "print-html-element",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Prints the HTML of a provided element.",
   "main": "print-html-element.js",
   "scripts": {
