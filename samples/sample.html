@@ -1,15 +1,16 @@
 <html>
 <head>
-    <title>Print Element Sample v0.2.1</title>
+    <title>Print Element Sample</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
     <div class="jumbotron">
-        <h1>Print Element Sample v0.2.1</h1>
+        <h1>Print Element Sample</h1>
         <p>This is sample HTML taken from the <a href="http://getbootstrap.com/examples/theme/">Theme Template for Bootstrap</a> page.</p>
         <button id="printElButton" class="btn btn-lg btn-primary">Print section below</button>
         <button id="printStrButton" class="btn btn-lg btn-primary">Print HTML string</button>
+        <button id="printTempStrButton" class="btn btn-lg btn-primary">Print HTML w/ Template</button>
     </div>
     <div id="printElement" class="test print class">
         <div class="page-header">
@@ -142,7 +143,7 @@
 </div>
 
 
-    <script type="text/javascript" src="../print-element.js"></script>
+    <script type="text/javascript" src="../print-html-element.js"></script>
     <script type="text/javascript">
         var PE = PrintElement();
 
@@ -159,6 +160,12 @@
             e.preventDefault();
 
             PE.printHtml("<h1>Let's print this h1</h1><p>...and while we're at it, this p as well will do nicely.</p>", {pageTitle: 'From HTML String'});
+        });
+
+        document.getElementById('printTempStrButton').addEventListener('click', function(e){
+            e.preventDefault();
+
+            PE.printHtml("<p>I want to print this paragraph</p>", {pageTitle: 'From HTML String', templateString: "<header>I'm part of the template header</header>{{printBody}}<footer>I'm part of the template footer</footer>"});
         });
     </script>
 </body>

@@ -1,5 +1,5 @@
 /*
-* Print HTML Element 0.2.1
+* Print HTML Element 0.3.0
 *
 * Copyright (c) 2015 Philip Da Silva
 *
@@ -22,7 +22,8 @@ var PrintElement = function() {
         opts = opts || {};
         opts = {
             printMode: opts.printMode || '',
-            pageTitle: opts.pageTitle || ''
+            pageTitle: opts.pageTitle || '',
+            templateString: opts.templateString || ''
         };
 
         // Get markup to be printed
@@ -89,6 +90,8 @@ var PrintElement = function() {
 
     function _getMarkup(element, opts, type) {
         var elementHtml = element.innerHTML, // Does not support form input elements
+            template = opts.templateString,
+            templateRegex = new RegExp(/{{\s*printBody\s*}}/gi),
             stylesheets,
             html = [];
 
@@ -104,6 +107,12 @@ var PrintElement = function() {
 
             default:
                 elementHtml = element.innerHTML;
+        }
+
+        if(template && templateRegex.test(template))
+        {
+            elementHtml = template.replace(templateRegex, elementHtml);
+            console.log(elementHtml);
         }
 
         html.push('<html><head><title>' + (opts.pageTitle || '') + '</title>');
