@@ -4,148 +4,81 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
-    <div class="jumbotron">
-        <h1>Print Element Sample</h1>
-        <p>This is sample HTML taken from the <a href="http://getbootstrap.com/examples/theme/">Theme Template for Bootstrap</a> page.</p>
-        <button id="printElButton" class="btn btn-lg btn-primary">Print section below</button>
-        <button id="printStrButton" class="btn btn-lg btn-primary">Print HTML string</button>
-        <button id="printTempStrButton" class="btn btn-lg btn-primary">Print HTML w/ Template</button>
-    </div>
-    <div id="printElement" class="test print class">
-        <div class="page-header">
-            <h1>We're going to print this</h1>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Print Element Sample</h1>
+            <p>Here are a couple of samples to show <code>print-html-element</code> in action</p>
         </div>
-        <p>
-            <button type="button" class="btn btn-lg btn-default">Default</button>
-            <button type="button" class="btn btn-lg btn-primary">Primary</button>
-            <button type="button" class="btn btn-lg btn-success">Success</button>
-            <button type="button" class="btn btn-lg btn-info">Info</button>
-            <button type="button" class="btn btn-lg btn-warning">Warning</button>
-            <button type="button" class="btn btn-lg btn-danger">Danger</button>
-            <button type="button" class="btn btn-lg btn-link">Link</button>
-        </p>
-        <p>
-            <button type="button" class="btn btn-default">Default</button>
-            <button type="button" class="btn btn-primary">Primary</button>
-            <button type="button" class="btn btn-success">Success</button>
-            <button type="button" class="btn btn-info">Info</button>
-            <button type="button" class="btn btn-warning">Warning</button>
-            <button type="button" class="btn btn-danger">Danger</button>
-            <button type="button" class="btn btn-link">Link</button>
-        </p>
-        <p>
-            <button type="button" class="btn btn-sm btn-default">Default</button>
-            <button type="button" class="btn btn-sm btn-primary">Primary</button>
-            <button type="button" class="btn btn-sm btn-success">Success</button>
-            <button type="button" class="btn btn-sm btn-info">Info</button>
-            <button type="button" class="btn btn-sm btn-warning">Warning</button>
-            <button type="button" class="btn btn-sm btn-danger">Danger</button>
-            <button type="button" class="btn btn-sm btn-link">Link</button>
-        </p>
-        <p>
-            <button type="button" class="btn btn-xs btn-default">Default</button>
-            <button type="button" class="btn btn-xs btn-primary">Primary</button>
-            <button type="button" class="btn btn-xs btn-success">Success</button>
-            <button type="button" class="btn btn-xs btn-info">Info</button>
-            <button type="button" class="btn btn-xs btn-warning">Warning</button>
-            <button type="button" class="btn btn-xs btn-danger">Danger</button>
-            <button type="button" class="btn btn-xs btn-link">Link</button>
-        </p>
 
-
-        <div class="page-header">
-            <h1>...and this</h1>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div>
+            <div class="row">
+                <div class="col-md-3">
+                    <button id="printStrButton" class="btn btn-lg btn-primary">Print HTML string</button>
+                </div>
+                <div class="col-md-9">
+                    <pre>&lt;h1&gt;Let&#39;s print this h1&lt;/h1&gt;
+&lt;p&gt;...and while we&#39;re at it, this p as well will do nicely.&lt;/p&gt;</pre>
+                </div>
             </div>
-            <div class="col-md-6">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
+                    <button id="printTempStrButton" class="btn btn-lg btn-primary">Print HTML w/ Template</button>
+                </div>
+                <div class="col-md-9">
+                    <pre>&lt;p&gt;I want to print this paragraph in a template&lt;/p&gt;</pre>
+                    <pre>&lt;header class=\&quot;label\&quot;&gt;I&#39;m part of the template header&lt;/header&gt;
+{{printBody}}
+&lt;footer class=\&quot;label\&quot;&gt;I&#39;m part of the template footer&lt;/footer&gt;</pre>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <button id="printElButton" class="btn btn-lg btn-primary">Print section below</button>
+                </div>
             </div>
         </div>
-    </div><!-- #printElement -->
 
-    <div class="page-header">
-    <h1>We're not printing this</h1>
+        <div id="printElement" class="test print class">
+            <div class="page-header">
+                <h2>Print this div</h2>
+            </div>
+            <div class="alert alert-success" role="alert">
+                <strong>We're going to print this!</strong>
+            </div>
+
+            <div class="alert alert-info" role="alert">
+                <strong>...and we're going to print this!</strong>
+            </div>
+        </div><!-- #printElement -->
+
+        <div>
+            <div class="page-header">
+                <h2>Just displaying this div</h2>
+            </div>
+            <div class="alert alert-danger" role="alert">
+                <strong>We're not going to print this</strong>
+            </div>
+        </div>
     </div>
-    <div class="alert alert-success" role="alert">
-    <strong>Well done!</strong> You successfully read this important alert message.
-    </div>
-    <div class="alert alert-info" role="alert">
-    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-    </div>
-    <div class="alert alert-warning" role="alert">
-    <strong>Warning!</strong> Best check yo self, you're not looking too good.
-    </div>
-    <div class="alert alert-danger" role="alert">
-    <strong>Oh snap!</strong> Change a few things up and try submitting again.
-    </div>
-</div>
 
 
     <script type="text/javascript" src="../print-html-element.js"></script>
     <script type="text/javascript">
         var PE = PrintElement();
+
+        document.getElementById('printStrButton').addEventListener('click', function(e){
+            e.preventDefault();
+
+            PE.printHtml("<h1>Let's print this h1</h1><p>...and while we're at it, this p as well will do nicely.</p>", {pageTitle: 'From HTML String', printMode: 'popup'});
+        });
+
+        document.getElementById('printTempStrButton').addEventListener('click', function(e){
+            e.preventDefault();
+
+            PE.printHtml("<p>I want to print this paragraph in a template</p>", {pageTitle: 'From HTML String', templateString: "<header class=\"label\">I'm part of the template header</header>{{printBody}}<footer class=\"label\">I'm part of the template footer</footer>"});
+        });
 
         document.getElementById('printElButton').addEventListener('click', function(e){
             var element = document.getElementById('printElement');
@@ -153,19 +86,6 @@
             e.preventDefault();
 
             PE.printElement(element, {pageTitle: 'From HTML Element'});
-        });
-
-
-        document.getElementById('printStrButton').addEventListener('click', function(e){
-            e.preventDefault();
-
-            PE.printHtml("<h1>Let's print this h1</h1><p>...and while we're at it, this p as well will do nicely.</p>", {pageTitle: 'From HTML String'});
-        });
-
-        document.getElementById('printTempStrButton').addEventListener('click', function(e){
-            e.preventDefault();
-
-            PE.printHtml("<p>I want to print this paragraph</p>", {pageTitle: 'From HTML String', templateString: "<header>I'm part of the template header</header>{{printBody}}<footer>I'm part of the template footer</footer>"});
         });
     </script>
 </body>

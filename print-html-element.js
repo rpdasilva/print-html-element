@@ -1,5 +1,5 @@
 /*
-* Print HTML Element 0.3.0
+* Print HTML Element 0.3.1
 *
 * Copyright (c) 2015 Philip Da Silva
 *
@@ -11,14 +11,16 @@
 
 var PrintElement = function() {
     function printElement(element, opts) {
-        _print(element, opts, 'elem');
+        var elementHtml = element.outerHTML;
+
+        _print(elementHtml, opts);
     }
 
-    function printHtml(str, opts) {
-        _print(str, opts, 'html');
+    function printHtml(html, opts) {
+        _print(html, opts);
     }
 
-    function _print(element, opts, type) {
+    function _print(html, opts) {
         opts = opts || {};
         opts = {
             printMode: opts.printMode || '',
@@ -27,7 +29,7 @@ var PrintElement = function() {
         };
 
         // Get markup to be printed
-        var html = _getMarkup(element, opts, type),
+        var markup = _getMarkup(html, opts),
             printWindow,
             printIframe,
             printDocument,
@@ -63,22 +65,26 @@ var PrintElement = function() {
 
         focus();
         printDocument.open();
-        printDocument.write(html);
+        printDocument.write(markup);
         printDocument.close();
 
         _callPrint(printWindow, printIframe);
     }
 
-    function _callPrint(element, iframe) {
-        if (element && element.printPage)
+    function _callPrint(printWindow, iframe) {
+        if (printWindow && printWindow.printPage)
         {
-            element.printPage();
-            document.body.removeChild(iframe); // Remove iframe afrer printing
+            printWindow.printPage();
+
+            if(iframe)
+            {
+                document.body.removeChild(iframe); // Remove iframe after printing
+            }
         }
         else
         {
             setTimeout(function() {
-                _callPrint(element, iframe);
+                _callPrint(printWindow, iframe);
             }, 50);
         }
     }
@@ -88,31 +94,15 @@ var PrintElement = function() {
         return window.location.protocol + '//' + window.location.hostname + port + window.location.pathname;
     }
 
-    function _getMarkup(element, opts, type) {
-        var elementHtml = element.innerHTML, // Does not support form input elements
-            template = opts.templateString,
+    function _getMarkup(elementHtml, opts) {
+        var template = opts.templateString,
             templateRegex = new RegExp(/{{\s*printBody\s*}}/gi),
             stylesheets,
             html = [];
 
-        switch(type)
-        {
-            case 'elem':
-                elementHtml = element.innerHTML;
-                break;
-
-            case 'html':
-                elementHtml = element;
-                break;
-
-            default:
-                elementHtml = element.innerHTML;
-        }
-
         if(template && templateRegex.test(template))
         {
             elementHtml = template.replace(templateRegex, elementHtml);
-            console.log(elementHtml);
         }
 
         html.push('<html><head><title>' + (opts.pageTitle || '') + '</title>');
@@ -125,7 +115,7 @@ var PrintElement = function() {
         // Ensure that relative links work
         html.push('<base href="' + _getBaseHref() + '" />');
         html.push('</head><body class="pe-body">');
-        html.push('<div class="' + element.className + '">' + elementHtml + '</div>');
+        html.push(elementHtml);
         html.push('<script type="text/javascript">function printPage(){focus();print();' + ((opts.printMode.toLowerCase() == 'popup') ? 'close();' : '') + '}</script>');
         html.push('</body></html>');
 
