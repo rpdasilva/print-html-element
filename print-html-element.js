@@ -112,6 +112,12 @@ var PrintElement = function() {
             html.push('<link rel="stylesheet" href="' + link.href + '">');
         });
 
+        // Webpack and browserify embed the styles into the <head> of html page. So it is needed to pull those styles as well to apply styling to print report
+        stylesheets = Array.prototype.slice.call(document.getElementsByTagName('style'));
+        stylesheets.forEach(function (link) {
+            html.push(link.outerHTML);
+        });
+
         // Ensure that relative links work
         html.push('<base href="' + _getBaseHref() + '" />');
         html.push('</head><body class="pe-body">');
