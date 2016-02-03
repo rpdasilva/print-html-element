@@ -98,6 +98,7 @@ var PrintElement = function() {
         var template = opts.templateString,
             templateRegex = new RegExp(/{{\s*printBody\s*}}/gi),
             stylesheets,
+            styles,
             html = [];
 
         if(template && templateRegex.test(template))
@@ -113,9 +114,9 @@ var PrintElement = function() {
         });
 
         // Webpack and browserify embed the styles into the <head> of html page. So it is needed to pull those styles as well to apply styling to print report
-        stylesheets = Array.prototype.slice.call(document.getElementsByTagName('style'));
-        stylesheets.forEach(function (link) {
-            html.push(link.outerHTML);
+        styles = Array.prototype.slice.call(document.getElementsByTagName('style'));
+        styles.forEach(function(style) {
+            html.push(style.outerHTML);
         });
 
         // Ensure that relative links work
