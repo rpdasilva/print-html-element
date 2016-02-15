@@ -26,7 +26,7 @@ var PrintElement = function() {
             printMode: opts.printMode || '',
             pageTitle: opts.pageTitle || '',
             templateString: opts.templateString || '',
-            popupProperties: opts.popupProperties
+            popupProperties: opts.popupProperties || ''
         };
 
         // Get markup to be printed
