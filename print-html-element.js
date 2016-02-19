@@ -25,7 +25,8 @@ var PrintElement = function() {
         opts = {
             printMode: opts.printMode || '',
             pageTitle: opts.pageTitle || '',
-            templateString: opts.templateString || ''
+            templateString: opts.templateString || '',
+            popupProperties: opts.popupProperties || ''
         };
 
         // Get markup to be printed
@@ -37,7 +38,7 @@ var PrintElement = function() {
 
         if (opts.printMode.toLowerCase() == 'popup')
         {
-            printWindow = window.open('about:blank', 'printElementWindow');
+            printWindow = window.open('about:blank', 'printElementWindow', opts.popupProperties);
             printDocument = printWindow.document;
         }
         else
