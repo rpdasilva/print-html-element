@@ -1,4 +1,4 @@
-# Print HTML Element v0.3.1
+# Print HTML Element v0.3.3
 
 Prints the HTML of a provided element.
 
@@ -47,7 +47,8 @@ An HTML class `pe-body` is also added to the body of the print area which can be
     var opts = {
         printMode: 'iframe',
         pageTitle: '',
-        templateString: ''
+        templateString: '',
+        popupProperties: ''
     };
 
     PE.printElement( elem, opts ); // Prints a DOM Element
@@ -58,6 +59,7 @@ An HTML class `pe-body` is also added to the body of the print area which can be
 - pageTitle sets the printed page title (defaults to blank)
 - templateString allows you to define a template that the html will be printed within.
     - Use `{{printBody}}` within the template to signify where the HTML should be injected
+- popupProperties set the window features (such as `menubar`, `scrollbars`, etc. in `popup` mode
 
 
 ## Possible future features

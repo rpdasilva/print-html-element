@@ -36,7 +36,7 @@ var PrintElement = function() {
             printDocument,
             printElementID;
 
-        if (opts.printMode.toLowerCase() == 'popup')
+        if (opts.printMode.toLowerCase() === 'popup')
         {
             printWindow = window.open('about:blank', 'printElementWindow', opts.popupProperties);
             printDocument = printWindow.document;
