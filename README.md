@@ -1,8 +1,8 @@
-# Print HTML Element v0.3.4
+# Print HTML Element
 
 Prints the HTML of a provided element.
 
-Forked from [jQuery.printElement](https://github.com/erikzaadi/jQueryPlugins/tree/master/jQuery.printElement) to remove jQuery dependency.
+Originally forked from [jQuery.printElement](https://github.com/erikzaadi/jQueryPlugins/tree/master/jQuery.printElement) to remove jQuery dependency.
 
 This fork removes some features while adding others (IE8 support is also removed for now). More features will be added as needed or requested.
 PR's welcome.
@@ -21,23 +21,24 @@ Print HTML Element is available on both NPM and Bower.
 ### Include
 In a CommonJS module system via Browserify or Webpack
 ```js
-    var PE = require("print-html-element");
+    var PHE = require("print-html-element");
 ```
 
 Good old-fashioned way
 ```html
-    <script type="text/javascript" src="js/print-html-element.js"></script>
+    <script type="text/javascript" src="print-html-element.js"></script>
 ```
 ```js
-    var PE = PrintElement();
+    // Alias global variable printHtmlElement for purposes of example
+    var PHE = printHtmlElement;
 ```
 
 ### Examples
 ```js
-    PE.printElement( document.getElementById('toPrint') );
-    PE.printHtml("<h1>Let's print this h1</h1>");
+    PHE.printElement( document.getElementById('toPrint') );
+    PHE.printHtml("<h1>Let's print this h1</h1>");
 
-    PE.printHtml("<h1>Let's print this h1</h1>", {templateString: "<header>I'm part of the template header</header>{{printBody}}<footer>I'm part of the template footer</footer>"});
+    PHE.printHtml("<h1>Let's print this h1</h1>", {templateString: "<header>I'm part of the template header</header>{{printBody}}<footer>I'm part of the template footer</footer>"});
 ```
 
 An HTML class `pe-body` is also added to the body of the print area which can be used as an additional style hook (on top of the regular print media query/stylesheet)
@@ -51,8 +52,8 @@ An HTML class `pe-body` is also added to the body of the print area which can be
         popupProperties: ''
     };
 
-    PE.printElement( elem, opts ); // Prints a DOM Element
-    PE.printHtml( str, opts ); // Prints an HTML string
+    PHE.printElement( elem, opts ); // Prints a DOM Element
+    PHE.printHtml( str, opts ); // Prints an HTML string
 ```
 
 - printMode determines which method is used to print. As a hidden `iframe` (default), or `popup` window
