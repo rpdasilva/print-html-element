@@ -13,7 +13,17 @@
         <div>
             <div class="row">
                 <div class="col-md-3">
-                    <button id="printStrButton" class="btn btn-lg btn-primary">Print HTML string</button>
+                    <button id="printStrButton" class="btn btn-lg btn-primary">Print HTML string from popup</button>
+                </div>
+                <div class="col-md-9">
+                    <pre>&lt;h1&gt;Let&#39;s print this h1&lt;/h1&gt;
+&lt;p&gt;...and while we&#39;re at it, this p as well will do nicely.&lt;/p&gt;</pre>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
+                    <button id="printStrIframeButton" class="btn btn-lg btn-primary">Print HTML string from iframe</button>
                 </div>
                 <div class="col-md-9">
                     <pre>&lt;h1&gt;Let&#39;s print this h1&lt;/h1&gt;
@@ -64,28 +74,27 @@
     </div>
 
 
-    <script type="text/javascript" src="../print-html-element.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/rpdasilva/print-html-element/master/dist/print-html-element.js"></script>
     <script type="text/javascript">
-        var PE = PrintElement();
-
         document.getElementById('printStrButton').addEventListener('click', function(e){
             e.preventDefault();
+            printHtmlElement.printHtml("<h1>Let's print this h1</h1><p>...and while we're at it, this p as well will do nicely.</p>", {pageTitle: 'From HTML String', printMode: 'popup'});
+        });
 
-            PE.printHtml("<h1>Let's print this h1</h1><p>...and while we're at it, this p as well will do nicely.</p>", {pageTitle: 'From HTML String', printMode: 'popup'});
+        document.getElementById('printStrIframeButton').addEventListener('click', function(e){
+            e.preventDefault();
+            printHtmlElement.printHtml("<h1>Let's print this h1</h1><p>...and while we're at it, this p as well will do nicely.</p>", {pageTitle: 'From HTML String', printMode: 'iframe'});
         });
 
         document.getElementById('printTempStrButton').addEventListener('click', function(e){
             e.preventDefault();
-
-            PE.printHtml("<p>I want to print this paragraph in a template</p>", {pageTitle: 'From HTML String', templateString: "<header class=\"label\">I'm part of the template header</header>{{printBody}}<footer class=\"label\">I'm part of the template footer</footer>"});
+            printHtmlElement.printHtml("<p>I want to print this paragraph in a template</p>", {pageTitle: 'From HTML String', templateString: "<header class=\"label\">I'm part of the template header</header>{{printBody}}<footer class=\"label\">I'm part of the template footer</footer>"});
         });
 
         document.getElementById('printElButton').addEventListener('click', function(e){
             var element = document.getElementById('printElement');
-
             e.preventDefault();
-
-            PE.printElement(element, {pageTitle: 'From HTML Element'});
+            printHtmlElement.printElement(element, {pageTitle: 'From HTML Element'});
         });
     </script>
 </body>
