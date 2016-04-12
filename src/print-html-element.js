@@ -1,5 +1,5 @@
 /*
-* Print HTML Element 0.3.4
+* Print HTML Element
 *
 * Copyright (c) 2015 Philip Da Silva
 *
@@ -9,7 +9,7 @@
 *   http://www.opensource.org/licenses/mit-license.php
 */
 
-var PrintElement = function() {
+function PrintHtmlElement() {
     function printElement(element, opts) {
         var elementHtml = element.outerHTML;
 
@@ -136,7 +136,4 @@ var PrintElement = function() {
     };
 };
 
-if (typeof module === 'object' && module.exports === exports)
-{
-    module.exports = PrintElement();
-}
+module.exports = PrintHtmlElement();
