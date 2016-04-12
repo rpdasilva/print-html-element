@@ -7,6 +7,8 @@ Originally forked from [jQuery.printElement](https://github.com/erikzaadi/jQuery
 This fork removes some features while adding others (IE8 support is also removed for now). More features will be added as needed or requested.
 PR's welcome.
 
+View examples [here](https://rpdasilva.github.io/print-html-element/)
+
 ## Installation
 Print HTML Element is available on both NPM and Bower.
 
@@ -34,6 +36,8 @@ Good old-fashioned way
 ```
 
 ### Examples
+View examples [here](https://rpdasilva.github.io/print-html-element/)
+
 ```js
     PHE.printElement( document.getElementById('toPrint') );
     PHE.printHtml("<h1>Let's print this h1</h1>");
