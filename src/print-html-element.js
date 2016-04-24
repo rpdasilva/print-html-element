@@ -36,17 +36,15 @@ function PrintHtmlElement() {
             printDocument,
             printElementID;
 
-        if (opts.printMode.toLowerCase() === 'popup')
-        {
+        if (opts.printMode.toLowerCase() === 'popup') {
             printWindow = window.open('about:blank', 'printElementWindow', opts.popupProperties);
             printDocument = printWindow.document;
-        }
-        else
-        {
+        } else {
+            //The random ID is to overcome a safari bug http://www.cjboco.com.sharedcopy.com/post.cfm/442dc92cd1c0ca10a5c35210b8166882.html
             printElementID = 'printElement_' + (Math.round(Math.random() * 99999)).toString();
 
             printIframe = document.createElement('iframe');
-            printIframe.setAttribute('id', printElementID); //The random ID is to overcome a safari bug http://www.cjboco.com.sharedcopy.com/post.cfm/442dc92cd1c0ca10a5c35210b8166882.html
+            printIframe.setAttribute('id', printElementID);
             printIframe.setAttribute('src', 'about:blank');
             printIframe.setAttribute('frameBorder', '0');
             printIframe.setAttribute('scrolling', 'no');
@@ -66,24 +64,25 @@ function PrintHtmlElement() {
 
         focus();
         printDocument.open();
-        printDocument.write(markup);
-        printDocument.close();
+
+        // SetTimeout fixes Issue #9 (iframe printMode does not work in firefox)
+        setTimeout(function() {
+          printDocument.write(markup);
+          printDocument.close();
+        });
 
         _callPrint(printWindow, printIframe);
     }
 
     function _callPrint(printWindow, iframe) {
-        if (printWindow && printWindow.printPage)
-        {
+        if (printWindow && printWindow.printPage) {
             printWindow.printPage();
 
-            if(iframe)
-            {
-                document.body.removeChild(iframe); // Remove iframe after printing
+            if (iframe) {
+                // Remove iframe after printing
+                document.body.removeChild(iframe);
             }
-        }
-        else
-        {
+        } else {
             setTimeout(function() {
                 _callPrint(printWindow, iframe);
             }, 50);
@@ -102,8 +101,7 @@ function PrintHtmlElement() {
             styles,
             html = [];
 
-        if(template && templateRegex.test(template))
-        {
+        if(template && templateRegex.test(template)) {
             elementHtml = template.replace(templateRegex, elementHtml);
         }
 

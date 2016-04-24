@@ -98,10 +98,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            printWindow = window.open('about:blank', 'printElementWindow', opts.popupProperties);
 	            printDocument = printWindow.document;
 	        } else {
+	            //The random ID is to overcome a safari bug http://www.cjboco.com.sharedcopy.com/post.cfm/442dc92cd1c0ca10a5c35210b8166882.html
 	            printElementID = 'printElement_' + Math.round(Math.random() * 99999).toString();
 
 	            printIframe = document.createElement('iframe');
-	            printIframe.setAttribute('id', printElementID); //The random ID is to overcome a safari bug http://www.cjboco.com.sharedcopy.com/post.cfm/442dc92cd1c0ca10a5c35210b8166882.html
+	            printIframe.setAttribute('id', printElementID);
 	            printIframe.setAttribute('src', 'about:blank');
 	            printIframe.setAttribute('frameBorder', '0');
 	            printIframe.setAttribute('scrolling', 'no');
@@ -120,8 +121,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        focus();
 	        printDocument.open();
-	        printDocument.write(markup);
-	        printDocument.close();
+
+	        // SetTimeout fixes Issue #9 (iframe printMode does not work in firefox)
+	        setTimeout(function () {
+	            printDocument.write(markup);
+	            printDocument.close();
+	        });
 
 	        _callPrint(printWindow, printIframe);
 	    }
@@ -131,13 +136,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            printWindow.printPage();
 
 	            if (iframe) {
-	                document.body.removeChild(iframe); // Remove iframe after printing
+	                // Remove iframe after printing
+	                document.body.removeChild(iframe);
 	            }
 	        } else {
-	                setTimeout(function () {
-	                    _callPrint(printWindow, iframe);
-	                }, 50);
-	            }
+	            setTimeout(function () {
+	                _callPrint(printWindow, iframe);
+	            }, 50);
+	        }
 	    }
 
 	    function _getBaseHref() {
