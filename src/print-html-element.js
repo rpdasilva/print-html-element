@@ -26,7 +26,8 @@ function PrintHtmlElement() {
             printMode: opts.printMode || '',
             pageTitle: opts.pageTitle || '',
             templateString: opts.templateString || '',
-            popupProperties: opts.popupProperties || ''
+            popupProperties: opts.popupProperties || '',
+            styles: opts.styles || ''
         };
 
         // Get markup to be printed
@@ -107,16 +108,30 @@ function PrintHtmlElement() {
 
         html.push('<html><head><title>' + (opts.pageTitle || '') + '</title>');
 
-        stylesheets = Array.prototype.slice.call( document.getElementsByTagName('link') );
-        stylesheets.forEach(function(link){
-            html.push('<link rel="stylesheet" href="' + link.href + '">');
-        });
+        if(!opts.styles.length) {
+            stylesheets = Array.prototype.slice.call(document.getElementsByTagName('link'));
+            stylesheets.forEach(function (link) {
+                html.push('<link rel="stylesheet" href="' + link.href + '">');
+            });
 
-        // Webpack and browserify embed the styles into the <head> of html page. So it is needed to pull those styles as well to apply styling to print report
-        styles = Array.prototype.slice.call(document.getElementsByTagName('style'));
-        styles.forEach(function(style) {
-            html.push(style.outerHTML);
-        });
+            // Webpack and browserify embed the styles into the <head> of html page. So it is needed to pull those styles as well to apply styling to print report
+            styles = Array.prototype.slice.call(document.getElementsByTagName('style'));
+            styles.forEach(function (style) {
+                html.push(style.outerHTML);
+            });
+        }else{
+            // if a file or array of files was passed use them
+            if(typeof opts.styles !== "string" || /\.css$/.test(opts.styles)){
+                var cssFiles = typeof opts.styles !== "string"?opts.styles:[opts.styles];
+                for(var i = 0;i < cssFiles.length;i++){
+                    html.push('<link rel="stylesheet" href="' + cssFiles[i] + '">');
+                }
+            }
+            //else parse the content as css code into a style element
+            else{
+                html.push('<style type="text/css">'+opts.styles+'</style>')
+            }
+        }
 
         // Ensure that relative links work
         html.push('<base href="' + _getBaseHref() + '" />');
