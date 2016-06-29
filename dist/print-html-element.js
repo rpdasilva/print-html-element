@@ -85,7 +85,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            pageTitle: opts.pageTitle || '',
 	            templateString: opts.templateString || '',
 	            popupProperties: opts.popupProperties || '',
-	            styles: opts.styles || ''
+	            stylesheets: opts.stylesheets || null,
+	            styles: opts.styles || null
 	        };
 
 	        // Get markup to be printed
@@ -99,7 +100,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            printWindow = window.open('about:blank', 'printElementWindow', opts.popupProperties);
 	            printDocument = printWindow.document;
 	        } else {
-	            //The random ID is to overcome a safari bug http://www.cjboco.com.sharedcopy.com/post.cfm/442dc92cd1c0ca10a5c35210b8166882.html
+	            //The random ID is to overcome a safari bug
+	            // http://www.cjboco.com.sharedcopy.com/post.cfm/442dc92cd1c0ca10a5c35210b8166882.html
 	            printElementID = 'printElement_' + Math.round(Math.random() * 99999).toString();
 
 	            printIframe = document.createElement('iframe');
@@ -165,30 +167,31 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        html.push('<html><head><title>' + (opts.pageTitle || '') + '</title>');
 
-	        if (!opts.styles.length) {
-	            stylesheets = Array.prototype.slice.call(document.getElementsByTagName('link'));
-	            stylesheets.forEach(function (link) {
-	                html.push('<link rel="stylesheet" href="' + link.href + '">');
-	            });
-
-	            // Webpack and browserify embed the styles into the <head> of html page. So it is needed to pull those styles as well to apply styling to print report
-	            styles = Array.prototype.slice.call(document.getElementsByTagName('style'));
-	            styles.forEach(function (style) {
-	                html.push(style.outerHTML);
-	            });
+	        // If stylesheet URL's or list of stylesheet URL's are specified, override page stylesheets
+	        if (opts.stylesheets) {
+	            stylesheets = Array.isArray(opts.stylesheets) ? opts.stylesheets : [opts.stylesheets];
 	        } else {
-	            // if a file or array of files was passed use them
-	            if (typeof opts.styles !== "string" || /\.css$/.test(opts.styles)) {
-	                var cssFiles = typeof opts.styles !== "string" ? opts.styles : [opts.styles];
-	                for (var i = 0; i < cssFiles.length; i++) {
-	                    html.push('<link rel="stylesheet" href="' + cssFiles[i] + '">');
-	                }
-	            }
-	            //else parse the content as css code into a style element
-	            else {
-	                    html.push('<style type="text/css">' + opts.styles + '</style>');
-	                }
+	            stylesheets = Array.prototype.slice.call(document.getElementsByTagName('link')).map(function (link) {
+	                return link.href;
+	            });
 	        }
+
+	        stylesheets.forEach(function (href) {
+	            html.push('<link rel="stylesheet" href="' + href + '">');
+	        });
+
+	        // If inline styles or list of inline styles are specified, override inline styles
+	        if (opts.styles) {
+	            styles = Array.isArray(opts.styles) ? opts.styles : [opts.styles];
+	        } else {
+	            styles = Array.prototype.slice.call(document.getElementsByTagName('style')).map(function (style) {
+	                return style.innerHTML;
+	            });
+	        }
+
+	        styles.forEach(function (style) {
+	            html.push('<style type="text/css">' + style + '</style>');
+	        });
 
 	        // Ensure that relative links work
 	        html.push('<base href="' + _getBaseHref() + '" />');
