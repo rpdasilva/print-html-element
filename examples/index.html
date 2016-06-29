@@ -33,13 +33,37 @@
             <hr>
             <div class="row">
                 <div class="col-md-3">
+                    <button id="printStrStylesButton" class="btn btn-lg btn-primary">Print with custom styles</button>
+                </div>
+                <div class="col-md-9">
+                    <code>styles: 'body { transform: translate(-150px, 500px) rotate(45deg); }'</code>
+                    <br><br>
+                    <pre>&lt;h1&gt;Let&#39;s print this h1&lt;/h1&gt;
+&lt;p&gt;...and while we&#39;re at it, this p as well will do nicely.&lt;/p&gt;</pre>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
+                    <button id="printStrStylesheetButton" class="btn btn-lg btn-primary">Print with custom stylesheets</button>
+                </div>
+                <div class="col-md-9">
+                    <code>stylesheets: 'https://cdnjs.cloudflare.com/ajax/libs/typeplate-starter-kit/3.0.1/css/typeplate.min.css'</code>
+                    <br><br>
+                    <pre>&lt;h1&gt;Let&#39;s print this h1&lt;/h1&gt;
+&lt;p&gt;...and while we&#39;re at it, this p as well will do nicely.&lt;/p&gt;</pre>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
                     <button id="printTempStrButton" class="btn btn-lg btn-primary">Print HTML w/ Template</button>
                 </div>
                 <div class="col-md-9">
                     <pre>&lt;p&gt;I want to print this paragraph in a template&lt;/p&gt;</pre>
-                    <pre>&lt;header class=\&quot;label\&quot;&gt;I&#39;m part of the template header&lt;/header&gt;
+                    <pre>&lt;header class=&quot;label&quot;&gt;I&#39;m part of the template header&lt;/header&gt;
 {{printBody}}
-&lt;footer class=\&quot;label\&quot;&gt;I&#39;m part of the template footer&lt;/footer&gt;</pre>
+&lt;footer class=&quot;label&quot;&gt;I&#39;m part of the template footer&lt;/footer&gt;</pre>
                 </div>
             </div>
             <hr>
@@ -78,17 +102,35 @@
     <script type="text/javascript">
         document.getElementById('printStrButton').addEventListener('click', function(e){
             e.preventDefault();
-            printHtmlElement.printHtml("<h1>Let's print this h1</h1><p>...and while we're at it, this p as well will do nicely.</p>", {pageTitle: 'From HTML String', printMode: 'popup'});
+            printHtmlElement.printHtml('<h1>Let\'s print this h1</h1><p>...and while we\'re at it, this p as well will do nicely.</p>', {pageTitle: 'From HTML String', printMode: 'popup'});
         });
 
         document.getElementById('printStrIframeButton').addEventListener('click', function(e){
             e.preventDefault();
-            printHtmlElement.printHtml("<h1>Let's print this h1</h1><p>...and while we're at it, this p as well will do nicely.</p>", {pageTitle: 'From HTML String', printMode: 'iframe'});
+            printHtmlElement.printHtml('<h1>Let\'s print this h1</h1><p>...and while we\'re at it, this p as well will do nicely.</p>', {pageTitle: 'From HTML String', printMode: 'iframe'});
+        });
+
+        document.getElementById('printStrStylesButton').addEventListener('click', function(e){
+            e.preventDefault();
+            printHtmlElement.printHtml('<h1>Let\'s print this h1</h1><p>...and while we\'re at it, this p as well will do nicely.</p>', {
+                pageTitle: 'From HTML String',
+                printMode: 'iframe',
+                styles: 'body { transform: translate(-150px, 500px) rotate(45deg); }'
+            });
+        });
+
+        document.getElementById('printStrStylesheetButton').addEventListener('click', function(e){
+            e.preventDefault();
+            printHtmlElement.printHtml('<h1>Let\'s print this h1</h1><p>...and while we\'re at it, this p as well will do nicely.</p>', {
+                pageTitle: 'From HTML String',
+                printMode: 'iframe',
+                stylesheets: 'https://cdnjs.cloudflare.com/ajax/libs/typeplate-starter-kit/3.0.1/css/typeplate.min.css'
+            });
         });
 
         document.getElementById('printTempStrButton').addEventListener('click', function(e){
             e.preventDefault();
-            printHtmlElement.printHtml("<p>I want to print this paragraph in a template</p>", {pageTitle: 'From HTML String', templateString: "<header class=\"label\">I'm part of the template header</header>{{printBody}}<footer class=\"label\">I'm part of the template footer</footer>"});
+            printHtmlElement.printHtml('<p>I want to print this paragraph in a template</p>', {pageTitle: 'From HTML String', templateString: '<header class="label">I\'m part of the template header</header>{{printBody}}<footer class="label">I\'m part of the template footer</footer>'});
         });
 
         document.getElementById('printElButton').addEventListener('click', function(e){

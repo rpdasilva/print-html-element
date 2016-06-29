@@ -135,8 +135,6 @@ function PrintHtmlElement() {
                 });
         }
  
-        console.log(styles);
-
         styles.forEach(function (style) {
             html.push('<style type="text/css">' + style + '</style>');
         });

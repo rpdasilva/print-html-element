@@ -189,8 +189,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            });
 	        }
 
-	        console.log(styles);
-
 	        styles.forEach(function (style) {
 	            html.push('<style type="text/css">' + style + '</style>');
 	        });
