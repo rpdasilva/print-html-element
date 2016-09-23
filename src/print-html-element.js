@@ -143,7 +143,7 @@ function PrintHtmlElement() {
         html.push('<base href="' + _getBaseHref() + '" />');
         html.push('</head><body class="pe-body">');
         html.push(elementHtml);
-        html.push('<script type="text/javascript">function printPage(){focus();print();' + ((opts.printMode.toLowerCase() == 'popup') ? 'close();' : '') + '}</script>');
+        html.push('<script type="text/javascript">function printPage(){focus();window.print();' + ((opts.printMode.toLowerCase() == 'popup') ? 'close();' : '') + '}</script>');
         html.push('</body></html>');
 
         return html.join('');
