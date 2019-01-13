@@ -40,20 +40,22 @@ View examples [here](https://rpdasilva.github.io/print-html-element/)
 
 ```js
     PHE.printElement( document.getElementById('toPrint') );
-    PHE.printHtml("<h1>Let's print this h1</h1>");
+    PHE.printHtml('<h1>Let\'s print this h1</h1>');
 
-    PHE.printHtml("<h1>Let's print this h1</h1>", {templateString: "<header>I'm part of the template header</header>{{printBody}}<footer>I'm part of the template footer</footer>"});
+    PHE.printHtml('<h1>Let\'s print this h1</h1>', {templateString: '<header>I\'m part of the template header</header>{{printBody}}<footer>I\'m part of the template footer</footer>'});
 ```
 
 An HTML class `pe-body` is also added to the body of the print area which can be used as an additional style hook (on top of the regular print media query/stylesheet)
 
 ### Options and methods supported
 ```js
-    var opts = {
-        printMode: 'iframe',
-        pageTitle: '',
-        templateString: '',
-        popupProperties: ''
+    opts = {
+        printMode: string;
+        pageTitle: string;
+        templateString: string;
+        popupProperties: string;
+        stylesheets: string | string[];
+        styles: string | string[];
     };
 
     PHE.printElement( elem, opts ); // Prints a DOM Element
@@ -65,6 +67,8 @@ An HTML class `pe-body` is also added to the body of the print area which can be
 - templateString allows you to define a template that the html will be printed within.
     - Use `{{printBody}}` within the template to signify where the HTML should be injected
 - popupProperties set the window features (such as `menubar`, `scrollbars`, etc. in `popup` mode
+- stylesheets overrides parsed `link` tags and instead injects `link` tags with hrefs specified as either a single string or array of strings
+- styles overrides parsed `style` tags and instead injects `style` blocks specified as either a single string or array of strings
 
 
 ## Possible future features
