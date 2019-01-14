@@ -27,6 +27,7 @@ function PrintHtmlElement() {
             pageTitle: opts.pageTitle || '',
             templateString: opts.templateString || '',
             popupProperties: opts.popupProperties || '',
+            printTimeout: opts.printTimeout || 0,
             stylesheets: opts.stylesheets || null,
             styles: opts.styles || null
         };
@@ -73,20 +74,22 @@ function PrintHtmlElement() {
           printDocument.close();
         });
 
-        _callPrint(printWindow, printIframe);
+        _callPrint(printWindow, printIframe, opts.printTimeout);
     }
 
-    function _callPrint(printWindow, iframe) {
+    function _callPrint(printWindow, iframe, printTimeout) {
         if (printWindow && printWindow.printPage) {
-            printWindow.printPage();
+            setTimeout(function () {
+                printWindow.printPage();
 
-            if (iframe) {
-                // Remove iframe after printing
-                document.body.removeChild(iframe);
-            }
+                if (iframe) {
+                    // Remove iframe after printing
+                    document.body.removeChild(iframe);
+                }
+            },printTimeout);
         } else {
             setTimeout(function() {
-                _callPrint(printWindow, iframe);
+                _callPrint(printWindow, iframe, printTimeout);
             }, 50);
         }
     }

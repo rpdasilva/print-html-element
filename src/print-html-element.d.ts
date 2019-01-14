@@ -9,6 +9,7 @@ declare namespace PrintHtmlElement{
         pageTitle: string;
         templateString: string;
         popupProperties: string;
+        printTimeout: number;
         stylesheets: string[];
         styles: string[];
     }
