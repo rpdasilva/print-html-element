@@ -1,7 +1,7 @@
 export = PrintHtmlElement;
 
 declare namespace PrintHtmlElement{
-    function printElement(element: HTMLElement, opts?: PrintHtmlElementOptions);
+    function printElement(element: Element, opts?: PrintHtmlElementOptions);
     function printHtml(html: string, opts?: PrintHtmlElementOptions);
     
     export interface PrintHtmlElementOptions {
